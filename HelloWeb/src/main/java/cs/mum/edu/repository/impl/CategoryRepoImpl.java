@@ -68,7 +68,7 @@ public class CategoryRepoImpl implements IcategoryRepository{
 	public List<Category> allCategories() {
 		EntityManager em=emf.createEntityManager();
 		em.getTransaction().begin();
-		Query query = em.createQuery("SELECT * Category");
+		Query query = em.createQuery("from Category");
 		List<Category> cat=query.getResultList();
 		em.close();
 		return cat;
@@ -81,6 +81,16 @@ public class CategoryRepoImpl implements IcategoryRepository{
 		em.remove(category);
 		em.getTransaction().commit();
 		em.close();
+	}
+
+	@Override
+	public List<Category> categoriesByName(String name) {
+		EntityManager em=emf.createEntityManager();
+		em.getTransaction().begin();
+		Query query = em.createQuery("from Category a where a.name="+"'"+name+"'");
+		List<Category> cat=query.getResultList();
+		em.close();
+		return cat;
 	}
 
 }

@@ -6,6 +6,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Category {
+	
 	@Id @GeneratedValue
 	private int id;
 	private String name;
